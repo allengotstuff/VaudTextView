@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="VaudTextView">
+        <attr name="vaud_typeface" format="enum">
+            <enum name="vaud_regular" value="0"/>
+            <enum name="vaud_bold" value="1"/>
+        </attr>
+    </declare-styleable>
+</resources>
