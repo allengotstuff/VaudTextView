@@ -77,7 +77,7 @@ public class VaudTextView extends TextView {
         DEFAULT_TYPEFACE = VaudType.getDefaultTypeface(context);
 
         //Typeface.createFromAsset doesn't work in the layout editor. Skipping...
-        if (isInEditMode() || attrs == null || Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
+        if (isInEditMode() || attrs == null) {
             return;
         }
 
@@ -105,12 +105,5 @@ public class VaudTextView extends TextView {
             }
             return cache.get(fontName);
         }
-    }
-
-    /**
-     * Returns the currently set typeface of this view
-     */
-    public VaudType getCurrentTypeface() {
-        return mCurrentTypeface;
     }
 }

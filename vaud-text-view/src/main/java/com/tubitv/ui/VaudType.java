@@ -7,8 +7,8 @@ import android.util.Log;
  * Created by stoyan on 4/28/17.
  */
 public enum VaudType {
-    VAUD_REGULAR(0, "Roboto-Regular.ttf"),
-    VAUD_BOLD(1, "Roboto-Medium.ttf");
+    VAUD_REGULAR(0, "Vaud-Regular.otf"),
+    VAUD_BOLD(1, "Vaud-Bold.otf");
 
     /**
      * The int value of this enum, defined in attr.xml
