@@ -1,0 +1,82 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+def libVersion = "0.0.1"
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 25
+        versionCode 1
+        versionName libVersion
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    testCompile 'junit:junit:4.12'
+}
+
+Properties properties = new Properties()
+File propFile = "${System.properties['user.home']}${File.separator}.gradle${File.separator}bintray.properties" as File
+properties.load(propFile.newDataInputStream())
+
+ext {
+    bintrayUser = properties.getProperty("bintray.user")
+    bintrayKey = properties.getProperty("bintray.apikey")
+
+    bintrayRepo = 'UI'
+    bintrayName = 'VaudTextView'
+    bintrayOrg = 'tubitv'
+
+    publishedGroupId = 'com.tubitv.ui'
+    libraryName = 'VaudTextView'
+    artifact = 'tubi-loading-view'
+
+    libraryDescription = 'A font styled textview that support vaud font'
+
+    siteUrl = 'https://github.com/Tubitv/VaudTextView'
+    gitUrl = 'https://github.com/Tubitv/VaudTextView.git'
+
+    libraryVersion = libVersion
+
+    developerId = 'StoyanD'
+    developerName = 'Stoyan Dimitrov'
+    developerEmail = 'support@tubitv.com'
+
+    licenseName = 'MIT'
+    licenseUrl = 'https://github.com/Tubitv/VaudTextView/blob/master/LICENSE'
+    allLicenses = ["MIT"]
+}
+
+apply from: 'https://raw.githubusercontent.com/Tubitv/BintrayGradle/master/install.gradle'
+apply from: 'https://raw.githubusercontent.com/Tubitv/BintrayGradle/master/bintray.gradle'
